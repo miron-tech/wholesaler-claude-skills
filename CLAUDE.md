@@ -22,11 +22,14 @@ AI-powered tools for real estate wholesalers. Give Claude an address and it pull
 | Tool | File | Use When |
 |------|------|----------|
 | Property Recon | `.claudeskills/property-recon-SKILL.md` | You have an address and need the full picture — owner, value, taxes, liens, motivation score |
+| Rehab Estimator | `.claudeskills/rehab-estimator-SKILL.md` | You have a listing with photos and need repair cost estimates across 3 scenarios |
 
 ## Routing
 
 ```
 IF user has an address and wants property intel → property-recon-SKILL.md
+IF user has listing photos or a Redfin URL and needs repair estimates → rehab-estimator-SKILL.md
+IF user ran Property Recon and wants to estimate repairs next → rehab-estimator-SKILL.md
 ```
 
 ## Built by CyclSales

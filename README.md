@@ -269,12 +269,47 @@ Without any MCP servers, Claude will ask you to provide the data manually and st
 
 ---
 
+## Rehab Estimator
+
+Give Claude a listing with photos (or just an address — it'll find the listing). It browses every photo via the Chrome extension, grades property condition across 6 zones, and produces three repair budgets.
+
+**What it produces:**
+
+- **R.E.H.A.B.+F Score** — 6-zone condition grading (Roof/Exterior, Electrical/HVAC, Hydro/Plumbing, All Interior Surfaces, Bathrooms/Kitchen, Foundation/Structure)
+- **Line-item repair budget** — every item with cost ranges, not single numbers
+- **Three scenarios** — rental-ready (minimum viable), mid-range flip, and full worst-case
+- **Hidden cost risks** — flags items photos can't confirm (asbestos, galvanized pipes, foundation movement) based on year built
+- **Deal impact** — plugs repair numbers into the 70% rule to calculate your max offer
+
+**Example:**
+```
+Run a rehab estimate on 9631 Silver Meadow Dr, Dallas TX 75217. Listed on Redfin as investor special.
+```
+
+Works best after Property Recon — it uses the property details (year built, foundation type, HVAC type) to make smarter estimates.
+
+**Requires:** Claude in Chrome extension (browses listing photos). Also uses Perplexity for local contractor costs and Firecrawl to find the listing URL.
+
+### What Rehab Estimator Analyzes
+
+| Zone | What It Covers | MCP Required |
+|------|---------------|-------------|
+| Roof, Exterior & Envelope | Roof, siding, windows, doors, yard, fence | Chrome |
+| Electrical & HVAC | Panel, wiring, heating, cooling, fixtures | Chrome |
+| Plumbing | Water damage, mold, water heater, fixtures, pipes | Chrome |
+| Interior Surfaces | Walls, ceilings, flooring, trim, doors, paint | Chrome |
+| Bathrooms & Kitchen | Cabinets, counters, appliances, fixtures, tile | Chrome |
+| Foundation & Structure | Foundation type, settling, subfloor, termites | Chrome |
+
+Cost tables are calibrated for DFW with adjustment factors for Memphis, Houston, San Antonio, Phoenix, Atlanta, and other major investor markets.
+
+---
+
 ## More Tools Coming
 
-Property Recon is the first tool. More are in development:
+More tools are in development:
 
 - **Comp Analyzer** — finds comps and calculates ARV automatically
-- **Rehab Estimator** — photo-based repair estimates across 3 scenarios
 - **Conversation Coach** — tells you what to say to a seller based on their situation
 - **Creative Finance Structurer** — structures sub-to, seller finance, wraps with full math
 - **Deal Stacker** — ranks your pipeline and tells you which deals to focus on
