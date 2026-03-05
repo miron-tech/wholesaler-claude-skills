@@ -1,26 +1,26 @@
 ---
 name: rehab-estimator
-description: "Generate a photo-based rehab estimate for any property using listing photos. Use when a wholesaler needs repair cost estimates before making an offer, building a deal package, or validating their numbers. Browses listing photos via Chrome extension, grades property condition across 6 zones using the R.E.H.A.B.+F scoring framework, and produces three-scenario rehab budgets (rental-ready, mid-range flip, full worst-case). Uses Chrome MCP for Redfin photo browsing, Perplexity for local contractor costs, and Firecrawl for finding listing URLs."
+description: "Generate a photo-based rehab estimate for any property. Accepts photos from listing sites (Redfin/Zillow via Chrome), a local folder on your computer, or a shared Google Drive link. Use when a wholesaler needs repair cost estimates before making an offer, building a deal package, or validating their numbers. Grades property condition across 6 zones using the R.E.H.A.B.+F scoring framework and produces three-scenario rehab budgets (rental-ready, mid-range flip, full worst-case). Uses Chrome MCP for Redfin photo browsing, Perplexity for local contractor costs, and Firecrawl for finding listing URLs."
 ---
 
 # Rehab Estimator Skill
 
-> **Purpose:** Turn listing photos into a defensible, line-item rehab estimate in three scenarios — so you know your repair number before you make an offer, not after.
+> **Purpose:** Turn property photos into a defensible, line-item rehab estimate in three scenarios — so you know your repair number before you make an offer, not after. Works with listing photos, your own photos from a walkthrough, or photos shared via Google Drive.
 
 ---
 
 ## PREREQUISITE
-- **Claude in Chrome MCP** — PRIMARY tool. Navigates Redfin photo galleries, screenshots each room/zone, reads visible condition details
+- **Claude in Chrome MCP** — for browsing Redfin/Zillow photo galleries (not needed if using local photos or Google Drive)
 - **Perplexity MCP** — local contractor cost data, material pricing by market, cost adjustments
-- **Firecrawl MCP** — finding correct Redfin/Zillow listing URLs (search first, then Chrome browses)
+- **Firecrawl MCP** — finding correct Redfin/Zillow listing URLs (not needed if using local photos or Google Drive)
 
-> **Why Chrome is primary:** Listing photos are the only way to assess condition without boots on the ground. Chrome extension navigates photo galleries, clicks category tabs, screenshots each photo, and lets Claude analyze visible damage, finishes, and systems. Firecrawl can't navigate interactive photo galleries.
+> **No listing? No problem.** This skill works with three photo sources: (1) Listing sites like Redfin/Zillow via Chrome, (2) a folder of photos on your computer, or (3) photos shared via Google Drive link. If you drove for dollars and took photos on your phone, just drop them in a folder and point Claude at it.
 
 ---
 
 ## WHAT THIS SKILL DOES
 
-- Browses listing photos on Redfin (or Zillow) via Chrome extension
+- Analyzes property photos from any source — Redfin/Zillow listings, local folders, or Google Drive
 - Grades property condition across 6 zones using the R.E.H.A.B.+F scoring framework
 - Produces line-item repair estimates for every visible deficiency
 - Outputs three budget scenarios: rental-ready, mid-range flip, and full worst-case
@@ -44,7 +44,10 @@ description: "Generate a photo-based rehab estimate for any property using listi
 |-------|----------|---------|
 | Property address | Yes | "9631 Silver Meadow Dr, Dallas, TX 75217" |
 | Property details | Yes (or pull from Property Recon) | "2/1, 1,008 sqft, built 1959, pier & beam" |
-| Listing URL (Redfin preferred) | Helpful (will search if not provided) | Redfin or Zillow listing URL |
+| **Photo source (one of these):** | Yes | See below |
+| — Listing URL (Redfin preferred) | Option A | Redfin or Zillow listing URL (Chrome browses the gallery) |
+| — Local photo folder | Option B | "/Users/you/photos/123-oak-st/" — your own photos from a walkthrough or D4D |
+| — Google Drive link | Option C | A shared Google Drive folder link — download photos first, then analyze |
 | Property Recon data | Helpful | Year built, foundation type, HVAC type, construction, roof type |
 | Purpose | Helpful | "Making an offer" or "Building a deal package" or "Deciding cash vs creative" |
 | ARV (from Comp Analyzer) | Helpful | "$195,000" — used for deal impact calculation |
@@ -310,6 +313,18 @@ IF exterior only (no listing, just D4D or drive-by) →
   Grade Zone R from exterior photos, flag all interior zones as UNKNOWN
   Provide exterior-only estimate + range for interior based on year/condition
 
+IF user provides a local folder path →
+  Use the Read tool to open each image file in the folder (JPG, PNG, HEIC)
+  Claude can see photos directly — no Chrome needed
+  Analyze each photo the same way as listing photos
+  This is the BEST source — walkthrough photos often show more than listing photos
+
+IF user provides a Google Drive link →
+  Google Drive links require downloading first. Tell the user:
+  "Download the photos from Google Drive to a folder on your computer, then give me the folder path."
+  OR if the link is a public share, try using Firecrawl to access individual image URLs
+  Once photos are local, use the Read tool to analyze each one
+
 DEFAULT →
   Browse all available photos, grade all 6 zones, produce three-scenario estimate
 ```
@@ -322,7 +337,9 @@ DEFAULT →
 
 | Data Needed | Best Tool | Why |
 |------------|-----------|-----|
-| Listing photos (browsing, screenshotting) | **Chrome** → Redfin/Zillow photo gallery | Interactive gallery requires clicking tabs, scrolling, navigating |
+| Photos from a listing site | **Chrome** → Redfin/Zillow photo gallery | Interactive gallery requires clicking tabs, scrolling, navigating |
+| Photos from a local folder | **Read tool** (built-in, no MCP needed) | Claude reads image files directly — JPG, PNG, HEIC |
+| Photos from Google Drive | **Download first**, then **Read tool** | Google Drive links need to be downloaded to a local folder first |
 | Correct listing URL | **Firecrawl** search | Redfin URLs need home IDs — search first |
 | Property details (beds, baths, sqft, year built) | **Property Recon** data or **Firecrawl** → Redfin | Get basics before photo review |
 | Local contractor costs by market | **Perplexity** | "Average cost of HVAC installation in [city] [state] 2025-2026" |
@@ -379,6 +396,63 @@ For each category tab available (Kitchen, Bathroom, Bedroom, Living Room, Dining
 - Screenshot every 2-3 photos to catch all rooms
 
 **If no photos on Redfin:** Try Zillow, Realtor.com, or MLS listing (some have more photos)
+
+### Local Folder Workflow — Your Own Photos
+
+When the user has their own photos (from a walkthrough, D4D drive-by, or sent by a seller/agent), they don't need Chrome or Firecrawl at all. Claude reads image files directly.
+
+**Step 1: Get the folder path**
+```
+User provides: "Photos are in ~/Desktop/123-oak-st-photos/"
+Or: "I put the photos in /Users/me/Downloads/property-photos/"
+```
+
+**Step 2: List all image files in the folder**
+```
+Use Glob tool: "~/Desktop/123-oak-st-photos/*.{jpg,jpeg,png,heic,JPG,JPEG,PNG,HEIC}"
+This finds every photo in the folder
+```
+
+**Step 3: Read each photo**
+```
+Use Read tool on each image file — Claude sees the photo visually
+Read all photos (or batch them if there are many)
+Analyze each one for condition, damage, finishes, systems
+```
+
+**Step 4: Grade and estimate**
+```
+Same R.E.H.A.B.+F grading as listing photos
+Same three-scenario budget output
+```
+
+**Tips for better results with your own photos:**
+- Label photos by room if possible (kitchen-1.jpg, bathroom-1.jpg, exterior-front.jpg)
+- Take photos of: every room, the roof (from the yard), the electrical panel, the water heater, under sinks, HVAC equipment
+- Close-ups of damage are more useful than wide shots of clean rooms
+- Even phone photos work — Claude can read any image format
+
+### Google Drive Workflow — Shared Photos
+
+When photos are shared via Google Drive (common when a seller, agent, or bird dog sends photos):
+
+**Option A: Download first (recommended)**
+```
+1. Tell the user: "Download those photos from Google Drive to a folder on your computer"
+   - In Google Drive: select all photos → right-click → Download (creates a .zip)
+   - Unzip to a folder
+2. User provides the local folder path
+3. Follow the Local Folder Workflow above
+```
+
+**Option B: Public Google Drive link**
+```
+1. If the link is publicly shared, try using Firecrawl to access the folder listing
+2. This is less reliable than downloading — Google Drive pages are JavaScript-heavy
+3. If Firecrawl can't read it, fall back to Option A
+```
+
+**Always recommend Option A** — downloading is faster and more reliable than trying to scrape Google Drive.
 
 ### Perplexity Calls — Cost Adjustment
 

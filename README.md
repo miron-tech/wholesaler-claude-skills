@@ -271,7 +271,11 @@ Without any MCP servers, Claude will ask you to provide the data manually and st
 
 ## Rehab Estimator
 
-Give Claude a listing with photos (or just an address — it'll find the listing). It browses every photo via the Chrome extension, grades property condition across 6 zones, and produces three repair budgets.
+Give Claude property photos and it produces a line-item rehab estimate. Photos can come from anywhere:
+
+- **A listing** — give Claude a Redfin or Zillow URL (or just the address, it'll find it) and it browses the photos via Chrome
+- **Your own photos** — took photos on a walkthrough or drive-by? Drop them in a folder and give Claude the path
+- **Google Drive** — seller or agent sent you photos? Download them to a folder and point Claude at it
 
 **What it produces:**
 
@@ -281,14 +285,20 @@ Give Claude a listing with photos (or just an address — it'll find the listing
 - **Hidden cost risks** — flags items photos can't confirm (asbestos, galvanized pipes, foundation movement) based on year built
 - **Deal impact** — plugs repair numbers into the 70% rule to calculate your max offer
 
-**Example:**
+**Examples:**
 ```
 Run a rehab estimate on 9631 Silver Meadow Dr, Dallas TX 75217. Listed on Redfin as investor special.
+```
+```
+Run a rehab estimate using the photos in ~/Desktop/cedar-ln-photos/
+```
+```
+I have property photos in ~/Downloads/seller-photos/. Run a rehab estimate for 4821 Cedar Ln, Memphis TN. 3/2, 1,400 sqft, built 1972, slab foundation.
 ```
 
 Works best after Property Recon — it uses the property details (year built, foundation type, HVAC type) to make smarter estimates.
 
-**Requires:** Claude in Chrome extension (browses listing photos). Also uses Perplexity for local contractor costs and Firecrawl to find the listing URL.
+**MCP needed:** Depends on your photo source. Listing photos need Chrome + Firecrawl. Local folder photos need nothing — Claude reads images directly. All sources use Perplexity for local contractor costs.
 
 ### What Rehab Estimator Analyzes
 
