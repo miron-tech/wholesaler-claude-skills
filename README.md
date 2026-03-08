@@ -315,6 +315,14 @@ Cost tables are calibrated for DFW with adjustment factors for Memphis, Houston,
 
 ---
 
+## Help Us Map More Cities
+
+Property Recon can auto-check code violations in cities that publish open data (Dallas, New Orleans, LA, San Francisco, Buffalo, Mesa AZ, Seattle — so far). For other cities, it falls back to a phone number.
+
+**If you find a city with an open data portal for code violations** — [open an issue](https://github.com/miron-tech/wholesaler-claude-skills/issues/new?template=new-city-data-source.yml). There's a template that takes 30 seconds to fill out. We'll add it to the lookup table so it works automatically for everyone.
+
+---
+
 ## More Tools Coming
 
 More tools are in development:

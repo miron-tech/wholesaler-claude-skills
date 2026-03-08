@@ -90,6 +90,107 @@ Extract: address, bedrooms, bathrooms, sqft, year_built, lot_size, property_type
 
 **If Redfin fails:** Try Zillow. Find the zpid via Firecrawl search `"[address]" site:zillow.com`, then scrape. Zillow URLs are less predictable — always search first, don't guess the zpid.
 
+### Layer 1.5 — PropStream Deep Intel (Chrome → PropStream) [OPTIONAL]
+
+**Action:** If the user has PropStream open in Chrome, search the property to pull foreclosure status, liens, mortgage data, condition scoring, and comps that are NOT available from free sources.
+
+**Detection logic:**
+```
+Check Chrome tabs for any tab with "propstream" in the URL.
+IF PropStream tab exists AND user is logged in →
+  Run Layer 1.5 (automatic — no prompt needed)
+IF PropStream tab does NOT exist →
+  Skip Layer 1.5
+  At end of report, show PROPSTREAM GAP SUMMARY (see below)
+```
+
+**Step-by-step Chrome workflow (if PropStream is available):**
+
+1. **Find the PropStream tab** — check tabs_context for URL containing "propstream"
+2. **Navigate** to PropStream search if not already there: `app.propstream.com/search`
+3. **Type the address** in the search bar
+4. **Wait** for autocomplete suggestion, click it
+5. **Wait** 4 seconds for property card to load
+6. **Click** the property detail link (href containing `/search/[property-id]`)
+7. **Wait** 4 seconds for detail page to load
+8. **Screenshot** the detail page header (Value, Mortgage & Debt, Status)
+9. **Scroll down** to PropStream Intelligence section (condition scoring)
+10. **Screenshot** condition scores
+11. **Click** "Comparables & Nearby Listings" tab
+12. **Screenshot** comp table
+
+**Extract from PropStream:**
+- **Estimated Value** — PropStream's own AVM (compare to Redfin + county)
+- **Distressed status** — Bank Owned, Pre-Foreclosure, Short Sale, or None
+- **Document type** — Trustee's Deed = foreclosure, Warranty Deed = normal sale
+- **Sale amount** — actual or estimated purchase price at last transfer
+- **Purchase method** — Cash vs Financed
+- **Open mortgages** — count and estimated balance
+- **Involuntary liens** — count and dollar amount
+- **Estimated equity** — PropStream's equity calculation
+- **Owner type** — Trust, Individual, Corporate, etc.
+- **Owner status** — Owner Occupied vs Non-Owner Occupied
+- **Occupancy** — Occupied vs Vacant
+- **Length of ownership** — months/years since last transfer
+- **Condition scoring** — Total, Exterior, Interior, Kitchen, Bathroom (Poor/Average/Good)
+- **Avg comps** — PropStream's comp average
+- **Est. rent** — PropStream's rental estimate
+- **Nearby counts** — Pre-foreclosures, Bank Owned, Cash Buyers, Flip Comps
+
+**PropStream condition scores affect rehab estimates:**
+```
+IF Total Condition = "Poor" →
+  Increase rehab estimate range by 30-50%
+  Flag: "PropStream rates condition as POOR — expect higher rehab costs"
+
+IF Exterior = "Poor" AND Interior = "Average" →
+  Focus rehab on curb appeal, roof, siding, landscaping
+  Interior may need only cosmetic updates
+
+IF Kitchen = "Poor" →
+  Add $8K-$15K for kitchen renovation to rehab estimate
+```
+
+**PropStream foreclosure data changes the deal analysis:**
+```
+IF Document Type = "Trustee's Deed" →
+  Flag: FORECLOSURE PURCHASE
+  Note the purchase price — owner likely got a steep discount
+  Adjust negotiation strategy: owner has margin, but may want quick profit
+  Check if sale price < 50% of estimated value → likely auction deal
+
+IF Distressed = "Bank Owned" →
+  Current owner bought from bank/auction
+  They are an investor, not a distressed homeowner
+  Negotiation is investor-to-investor, not motivated seller outreach
+```
+
+**PROPSTREAM GAP SUMMARY (show when PropStream is NOT available):**
+
+Display this at the end of the report, after FILES SAVED and before WHAT'S NEXT:
+
+```
+  ──────────────────────────────────────────────
+
+  DATA GAPS — PropStream Would Add
+
+  ○ Foreclosure status     Was this a trustee sale?
+  ○ Lien confirmation      Liens verified or ruled out
+  ○ Mortgage balance       Open mortgages + est. balance
+  ○ Condition scoring      AI-rated exterior/interior/kitchen
+  ○ Comp averaging         Auto-calculated from nearby sales
+  ○ Skip trace             Owner contact info
+
+  These gaps affect motivation score accuracy
+  and rehab estimate confidence.
+
+  → 7-day free trial: trial.propstreampro.com/thrivemode
+```
+
+> **Important:** Never pressure. The free recon is valuable on its own. PropStream just fills gaps that would otherwise require manual research. Show the gaps honestly and let the user decide.
+
+---
+
 ### Layer 2 — Owner & Assessor Data (Chrome → County Assessor)
 
 **Action:** Use the Chrome extension to navigate the county assessor website, search by address, and extract owner information that is NOT available on Redfin/Zillow.
@@ -141,6 +242,23 @@ IF property is listed as "vacant" or "exempt" →
    Flag: POSSIBLE VACANCY
 ```
 
+**Data conflicts between Redfin and county:**
+
+When Redfin and county assessor disagree on property details (baths, foundation, sqft, etc.), note BOTH values and ask the user which they want to use. Don't silently pick one.
+
+```
+Example:
+  Redfin says: 2 bathrooms, Pier & Beam + Slab foundation
+  County says: 1 bathroom, Slab foundation
+
+  → Show both in the report:
+    "Baths: 1 (DCAD) — Redfin lists 2. Which is correct?"
+    "Foundation: Slab (DCAD) — Redfin lists Pier & Beam + Slab. Which is correct?"
+
+  → Use county as the default display value (county records are more reliable
+    for structural details), but flag the discrepancy so the user can verify.
+```
+
 ### Layer 3 — Value Estimate (Perplexity)
 
 **Run in parallel with Layer 2.** Use Perplexity to pull comparable sales.
@@ -188,14 +306,87 @@ IF property is listed as "vacant" or "exempt" →
 
 ### Layer 5 — Code Violations & Permits
 
-**Reality check:** Most cities do NOT have an online code violation search. This was confirmed during testing — Memphis, for example, is phone-only.
+**Some cities have open data APIs that can be queried directly — no Chrome needed.** Check the city-specific instructions below first. If no API exists, fall back to Chrome or phone.
 
-**What to do:**
-1. Use Perplexity to search: "[City] code enforcement violation lookup online"
-2. If an online portal exists → use Chrome to search it
-3. If no online portal exists (most cities) → note as manual step:
-   - "Code violation check requires calling [City] Code Enforcement at [phone]"
-   - "Alternative: Submit FOIA/public records request for violation history"
+#### Socrata Open Data API — Automated Code Violation Lookup
+
+Several cities publish code violations through Socrata open data APIs. These can be queried directly with WebFetch — no Chrome, no phone call. Check the table below before falling back to Chrome or phone.
+
+**Supported Cities:**
+
+| City | API Endpoint | Dataset ID | Search By | Notes |
+|------|-------------|------------|-----------|-------|
+| **Dallas, TX** | `dallasopendata.com/resource/x9pz-kdq9.json` | `x9pz-kdq9` | `str_num` + `str_nam` (CAPS, no suffix) | Also has 311 dataset: `eaah-n7x2` (search by `address` LIKE) |
+| **New Orleans, LA** | `data.nola.gov/resource/u6yx-v2tw.json` | `u6yx-v2tw` | Check field names with `$limit=1` first run | All code enforcement cases |
+| **Los Angeles, CA** | `data.lacity.org/resource/u82d-eh7z.json` | `u82d-eh7z` | Check field names with `$limit=1` first run | Building & Safety code enforcement (open cases) |
+| **San Francisco, CA** | `data.sfgov.org/resource/fbaf-fhya.json` | `fbaf-fhya` | Check field names with `$limit=1` first run | Housing code violations (historical) |
+| **Buffalo, NY** | `data.buffalony.gov/resource/abwd-pczc.json` | `abwd-pczc` | Check field names with `$limit=1` first run | Active code violations |
+| **Mesa, AZ** | `mesa-az.demo.socrata.com/resource/pu8f-55nm.json` | `pu8f-55nm` | Check field names with `$limit=1` first run | Near Phoenix metro |
+| **Seattle, WA** | `data.seattle.gov/resource/3qih-4uwq.json` | `3qih-4uwq` | Check field names with `$limit=1` first run | Code compliance violations by year |
+
+**How to query any Socrata endpoint:**
+
+```
+Step 1 — First time using a city's API, discover field names:
+  WebFetch: https://[domain]/resource/[dataset_id].json?$limit=1
+  Prompt: "List ALL field names in this JSON record"
+
+Step 2 — Find the address fields (varies by city):
+  Common patterns:
+    str_num + str_nam (Dallas)
+    address (single field, use $where=address like '%[NUMBER] [STREET]%')
+    block + lot (some cities use parcel-based)
+    location_address or property_address
+
+Step 3 — Query for the property:
+  WebFetch: https://[domain]/resource/[dataset_id].json?[address_field]=[value]&$limit=20
+  Prompt: "Return all code violation records with case number, type, status, dates"
+```
+
+**Dallas-specific (tested and confirmed):**
+
+```
+API 1 — Code Violations (primary):
+  URL: https://www.dallasopendata.com/resource/x9pz-kdq9.json?str_num=[HOUSE_NUMBER]&str_nam=[STREET_NAME_UPPERCASE]&$limit=20
+  Fields: service_request_id, service_request, nuisance (violation type), status, created, updated
+
+API 2 — 311 Service Requests (supplemental):
+  URL: https://www.dallasopendata.com/resource/eaah-n7x2.json?$where=address like '%[HOUSE_NUMBER] [STREET_NAME_UPPERCASE]%'&$limit=20
+  Fields: service_request_number, address, service_request_type, status, created_date, update_date
+```
+
+**Interpretation (all cities):**
+```
+IF active/open violations exist →
+  Flag: ACTIVE CODE VIOLATIONS
+  Add +2 to motivation score
+  Note: City may have placed liens for unresolved violations
+
+IF only closed violations →
+  Note: "Prior violations (all resolved)" — no motivation score impact
+
+IF no violations found →
+  Note: "No code violations on record ([City] OpenData)"
+```
+
+#### Chrome Fallback — Accela & Other Portals
+
+If the city is NOT in the Socrata table above, check for a web portal:
+
+- **Dallas Accela:** `aca-prod.accela.com/DALLASTX/` — search by address, shows permits + code cases
+- Many cities use Accela, CityView, or similar platforms — search with Perplexity: "[City] code enforcement lookup online" or "[City] Accela portal"
+- Use Chrome to navigate the portal, fill the search form, and extract results
+
+#### No API, No Portal — Phone Fallback
+
+Most cities do NOT have an open data API or searchable portal for code violations. For these:
+
+1. Note: "Code violation check requires calling [City] Code Enforcement at [phone]"
+2. Alternative: "Submit FOIA/public records request for violation history"
+
+> **When you discover a new city has a Socrata API or other open data source:** Add it to the table above AND to the county config in `./deals/county-configs/`. This turns a phone call into an automated lookup for every future property in that city.
+>
+> **Found a city with an open data API?** [Open an issue](https://github.com/miron-tech/wholesaler-claude-skills/issues/new?template=new-city-data-source.yml) — takes 30 seconds. We'll add it to the lookup table.
 
 **For building permits:**
 - Many counties DO have online permit search (often through Accela or similar platforms)
@@ -275,12 +466,139 @@ DEFAULT → Run all 7 layers and compile the full report
 
 ---
 
-## COMPLETE EXAMPLE
+## COMPLETE EXAMPLES
 
-### Example Input:
+### Example 1 — HIGH MOTIVATION (Dallas, TX)
+
+Shows: PropStream layer, code violations via API, data conflicts, foreclosure discovery, IRA-held property.
+
+> Run a property recon on 3846 Happy Canyon Dr, Dallas, TX 75241.
+
+---
+
+## PROPERTY RECON REPORT
+**3846 Happy Canyon Dr, Dallas, TX 75241**
+*Generated: March 8, 2026 | Sources: Redfin (Firecrawl), DCAD Assessor (Chrome), Dallas County Tax Office (Chrome), PropStream (Chrome), Dallas OpenData API, Perplexity web search*
+
+---
+
+### PROPERTY DETAILS
+| Field | Data | Source |
+|-------|------|--------|
+| Owner | EQUITY TRUST CUSTODIAN FBO TAMSYN CAMPBELL IRA | DCAD |
+| Mailing Address | PO Box 451240, Westlake, OH 44145-0000 | DCAD |
+| Property Type | Single-family Residential | DCAD |
+| Beds/Baths | 4 / 1 (full), 0 (half) | DCAD |
+| Sqft | 1,221 | DCAD |
+| Year Built | 1961 | DCAD |
+| Lot Size | 7,105 sqft (52ft x 124ft) | DCAD |
+| Stories | 1 | DCAD |
+| Construction | Frame, Brick Veneer | DCAD |
+| Foundation | Slab (DCAD) — Redfin lists Pier & Beam + Slab. Which is correct? | DCAD / Redfin conflict |
+| Heating/Cooling | Central Full / Central Full | DCAD |
+| Garage | 1 space | Redfin |
+| Depreciation | 45% | DCAD |
+| Parcel ID | 00000639142000000 | DCAD |
+
+### OWNERSHIP FLAGS
+- **ENTITY-OWNED** — held in a self-directed IRA through Equity Trust Company (SDIRA custodian, Westlake OH)
+- **OUT-OF-STATE ABSENTEE** — mailing address is Ohio, property is in Dallas TX
+- **NOT OWNER-OCCUPIED** — no homestead exemption filed
+- **RECENT TRANSFER** — deed transferred 11/13/2025
+- **IRA-HELD** — special tax implications (UBIT, prohibited transactions)
+- **Beneficial owner:** Tamsyn Campbell
+
+### PROPSTREAM DATA
+| Field | Data | Source |
+|-------|------|--------|
+| Document Type | Trustee's Deed | PropStream |
+| Sale Amount | ~$19,000 (foreclosure auction) | PropStream |
+| Condition | POOR | PropStream |
+| Distressed Status | Foreclosure | PropStream |
+| Est. Equity | ~$172,000+ | Calculated |
+
+**FORECLOSURE PURCHASE** — not a voluntary sale. Campbell's IRA acquired at auction for ~10% of market value.
+
+### PRICE HISTORY
+| Date | Event | Price |
+|------|-------|-------|
+| Nov 13, 2025 | Deed Transfer (Trustee's Deed) | ~$19,000 |
+| Oct 7, 2025 | Listing Removed | — |
+| Oct 3, 2025 | Price Changed | $139,000 |
+| Sep 25, 2025 | Listed | $150,000 |
+| Feb 22, 2019 | Sold (prior owner) | $124,900 |
+
+### VALUE ESTIMATE
+| Source | Value |
+|--------|-------|
+| Redfin Estimate | $204,635 |
+| County Market Value | $191,010 |
+| PropStream Avg Comps | ~$165,000 (reference only) |
+| Last listed at | $139,000 (failed to sell) |
+
+**Estimated ARV Range:** $180,000 — $210,000
+**ARV Confidence:** LOW-MEDIUM
+
+### TAX STATUS (Dallas County Tax Office — as of March 8, 2026)
+**Total Amount Due: $3,348.05 — TAXES OWED**
+
+Taxes were due Jan 31, 2026. Penalty and interest accruing. Not severely delinquent (no prior year debt).
+
+### CODE VIOLATIONS (Dallas OpenData API)
+| Case # | Type | Status | Date |
+|--------|------|--------|------|
+| 17-00268731 | Oversized Vehicle | CLOSED | Jun 6, 2017 |
+
+1 violation on record — resolved same day. No active violations.
+
+### NEIGHBORHOOD INTEL (75241)
+| Metric | Data | Source |
+|--------|------|--------|
+| Median Home Value | $206K-$208K | Zillow |
+| Median Sale Price | $260K | Redfin |
+| YoY Price Trend | Down 1.9% - 5.6% | Redfin/Zillow |
+| Days on Market | 46-53 days | Redfin |
+| Rental Rate (4BR) | $1,945 - $2,395/mo | Various |
+
+### MOTIVATION SCORE
+| Signal | Points | Status |
+|--------|--------|--------|
+| Tax delinquent (current year) | +1 | YES — $3,348 owed |
+| Absentee owner | +2 | YES — OH PO Box |
+| Out-of-state absentee | +3 | YES — Westlake, Ohio |
+| Vacant property | +3 | LIKELY — IRA-held, no homestead |
+| Entity-owned (IRA) | +1 | YES — Equity Trust FBO |
+| Failed listing | +2 | YES — $150K→$139K→pulled |
+| Code violations | +2 | NO — 1 closed (2017) |
+| **TOTAL** | **9 confirmed** | **HIGH MOTIVATION** |
+
+### QUICK NUMBERS (70% Rule)
+```
+ARV (conservative):     $190,000
+MAO (70%):              $133,000
+Estimated Repairs:      $25,000-$35,000 (1961, slab, 45% depreciation, POOR condition)
+MAO - Repairs:          $98,000 - $108,000
+Target Offer Range:     $95,000 - $110,000
+Current owner paid:     ~$19,000 (foreclosure auction)
+```
+
+### RECOMMENDED NEXT STEPS
+1. **Skip trace Tamsyn Campbell** — beneficial IRA owner
+2. **Call angle:** "I see you picked up a property at auction in Dallas through your IRA. Taxes are coming due and it needs work — are you looking to move it or hold long-term?"
+3. **Offer strategy:** Owner paid ~$19K. Offer $95-110K = 5x+ return on their IRA investment.
+4. **IRA note:** All offers go through Equity Trust (custodian). Expect slower process.
+
+---
+
+*Data from DCAD Assessor, Dallas County Tax Office, PropStream, Dallas OpenData, Redfin, and Perplexity as of March 8, 2026. Not a professional appraisal. Verify all data before making offers.*
+
+---
+
+### Example 2 — LOW MOTIVATION (Memphis, TN)
+
+Shows: owner-occupied, taxes current, no code violations portal, honest "skip this lead" verdict.
+
 > Run a property recon on 4973 Cedar View Rd, Memphis, TN 38118.
-
-### Example Output:
 
 ---
 
@@ -541,21 +859,28 @@ URL to search property records by address?"
 
 For maximum speed, run these simultaneously:
 
-**Batch 1 (parallel):**
+**Batch 1 (parallel — no dependencies, just needs the address):**
 - Firecrawl → scrape Redfin (Layer 1)
 - Perplexity → comps query (Layer 3)
 - Perplexity → neighborhood query (Layer 6)
+- WebFetch → code violations API if city has Socrata endpoint (Layer 5)
+- Chrome → check if PropStream tab exists (detection only)
+
+**Batch 1.5 (parallel with Batch 2, if PropStream detected):**
+- Chrome → PropStream property search (Layer 1.5)
 
 **Batch 2 (after Batch 1, needs parcel number):**
 - Chrome → county assessor search (Layer 2)
 - Chrome → county trustee tax search (Layer 4)
 
-**Batch 3 (after Batch 2):**
+**Batch 3 (after Batch 2, only if needed):**
 - Chrome → register of deeds if available (Layer 4 continued)
-- Chrome or phone → code violations (Layer 5)
+- Chrome → code violations portal if city has no API (Layer 5 fallback)
 
 **Final:**
+- Merge PropStream data with county/Redfin data (cross-reference)
 - Compile all data → motivation score → report (Layer 7)
+- If PropStream was NOT available → show gap summary with trial link
 
 ---
 
@@ -564,6 +889,7 @@ For maximum speed, run these simultaneously:
 | City/County | Assessor Online? | Tax Lookup Online? | Code Violations Online? | Notes |
 |-------------|-----------------|-------------------|------------------------|-------|
 | Memphis / Shelby County, TN | YES — assessormelvinburgess.com/propertySearch | YES — shelbycountytrustee.com/103/Tax-Look-Up | NO — phone only (901-636-7464) | Don't enter street suffix in assessor search |
+| Dallas / Dallas County, TX | YES — dallascad.org/SearchAddr.aspx | YES — dallasact.com/act_webdev/dallas/searchbyproperty.jsp | YES — Dallas OpenData API (no Chrome needed) + Accela portal | See county config: `deals/county-configs/dallas-county-tx.md`. Tax office: skip suffix dropdown (trailing spaces bug). Code violations: use Socrata API `x9pz-kdq9` |
 | *Add more cities as tested* | | | | |
 
 > **When testing a new city:** Document the assessor URL, form field names, and any quirks in this table so future runs are faster.

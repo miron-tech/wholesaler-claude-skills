@@ -3,6 +3,18 @@
 ## What This Is
 AI-powered tools for real estate wholesalers. Give Claude an address and it pulls everything you need.
 
+## First Step On Any Task
+1. Read `.claudeskills/start-here-SKILL.md` — it routes every request to the correct skill
+2. Follow the skill's process and output format
+3. All output follows `_system/output-format.md` formatting rules
+4. All deal data follows `_system/deal-memory.md` persistence rules
+
+## System Files
+| File | Purpose |
+|------|---------|
+| `_system/output-format.md` | Visual design system — character palette, section order, templates |
+| `_system/deal-memory.md` | Persistent state — how to read/write `./deals/` directory |
+
 ## MCP Servers Recommended
 
 | MCP Server | What It Powers | Required? |
@@ -11,26 +23,42 @@ AI-powered tools for real estate wholesalers. Give Claude an address and it pull
 | **Firecrawl** | Zillow/Redfin scraping, LLC lookups | Recommended |
 | **Claude in Chrome** | County assessor/trustee lookups (interactive forms) | Optional |
 
-## How To Use
-1. Clone this repo into your project directory
-2. Set up Perplexity and Firecrawl MCP servers (see README for instructions)
-3. Tell Claude what you need — it routes to the right tool automatically
-4. Or call a tool directly: "Run property recon on 1234 Oak St, Dallas TX"
+## Available Skills
 
-## Available Tools
-
-| Tool | File | Use When |
-|------|------|----------|
+| Skill | File | Use When |
+|-------|------|----------|
+| Start Here | `.claudeskills/start-here-SKILL.md` | First run, routing, pipeline status, "what should I do next" |
 | Property Recon | `.claudeskills/property-recon-SKILL.md` | You have an address and need the full picture — owner, value, taxes, liens, motivation score |
 | Rehab Estimator | `.claudeskills/rehab-estimator-SKILL.md` | You have a listing with photos and need repair cost estimates across 3 scenarios |
 
+## Skill Chain
+```
+/property-recon → /comp-analyzer → /rehab-estimator → /creative-finance → /conversation-coach → /deal-stacker → /crm-connect
+```
+
 ## Routing
 
+The orchestrator (`start-here-SKILL.md`) handles all routing. Quick reference:
+
 ```
-IF user has an address and wants property intel → property-recon-SKILL.md
-IF user has listing photos or a Redfin URL and needs repair estimates → rehab-estimator-SKILL.md
-IF user ran Property Recon and wants to estimate repairs next → rehab-estimator-SKILL.md
+IF user provides an address → Check ./deals/ for existing data, then /property-recon
+IF user says "rehab" or "estimate" or provides photos → /rehab-estimator
+IF user says "comps" or "ARV" or "value" → /comp-analyzer
+IF user says "analyze this deal" → Chain: /property-recon → /comp-analyzer → /rehab-estimator
+IF user says "pipeline" or "what should I work on" → /deal-stacker
+IF vague request → Show pipeline status, suggest highest-impact action
 ```
+
+## Context Matrix
+Skills receive ONLY the data they need from prior skills. See `start-here-SKILL.md` for the full matrix. Key rule: selective context produces better output than dumping everything.
+
+## Deal Memory
+All deal data persists in `./deals/`. See `_system/deal-memory.md` for the full protocol:
+- Per-deal folders with recon, rehab, comps, photos
+- Market profile cache by ZIP (reusable across deals)
+- County config cache (assessor URLs, form quirks)
+- Pipeline registry (append-only)
+- Learnings journal (calibrates estimates over time)
 
 ## Built by CyclSales
 These tools were built by [CyclSales](https://cyclsales.com) — an AI-powered CRM for real estate investors and service businesses. If you want these workflows running on autopilot with AI follow-up, pipeline management, and voice AI — check out what we built.

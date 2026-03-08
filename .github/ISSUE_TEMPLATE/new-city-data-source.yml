@@ -1,0 +1,44 @@
+name: "New City Data Source"
+description: "Found a city with an open data portal for code violations? Submit it here."
+title: "[City] Code Violations Data Source"
+labels: ["new-city"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us map more cities. Fill in what you know — we'll add it to the skill so it works automatically for everyone.
+
+  - type: input
+    id: city
+    attributes:
+      label: City & State
+      placeholder: "e.g. Houston, TX"
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Open Data URL
+      description: "Link to the code violations dataset page or API endpoint"
+      placeholder: "e.g. https://data.houstonpolice.org/resource/abc123.json"
+    validations:
+      required: true
+
+  - type: input
+    id: dataset_id
+    attributes:
+      label: Dataset ID (if Socrata)
+      description: "The short ID from the URL — usually looks like xxxx-xxxx"
+      placeholder: "e.g. x9pz-kdq9"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: "How you search it, what fields it uses, any quirks you noticed"
+      placeholder: "e.g. Search by address field, returns JSON, no auth needed"
+    validations:
+      required: false
