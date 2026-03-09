@@ -315,6 +315,45 @@ Cost tables are calibrated for DFW with adjustment factors for Memphis, Houston,
 
 ---
 
+## Comp Analyzer
+
+Give Claude a property address and it finds comparable sales, calculates ARV, and tells you your max offer — no manual comp research needed.
+
+**What it does:**
+
+1. **Wide search** — uses Perplexity to find recent sales near the subject property (adjustable radius and time window)
+2. **Deep scrape** — uses Firecrawl to pull detailed data from Redfin, Zillow, and county records for each comp
+3. **Filter & adjust** — keeps only qualified comps (±20% sqft, ±1 bed/bath, within 1 mile, last 90 days) and applies adjustments for differences in size, features, and condition
+4. **Calculate ARV** — averages adjusted $/sqft across remaining comps, cross-references with Zillow/Redfin automated estimates, assigns a confidence level
+5. **Deal math** — runs the 70% rule with your repair estimate to give you a max allowable offer range
+
+**Examples:**
+```
+Run comps for 4821 Cedar Ln, Memphis TN 38118. 3/2, 1,450 sqft, built 1960. Needs full rehab, estimated repairs $50K.
+```
+```
+What's the ARV on 512 Walnut Rd, Dallas TX? It's a 4/3, 2,200 sqft. Renovated condition.
+```
+```
+Pull comps for this deal — I need to build a package for my buyers.
+```
+
+Works best after Property Recon — it uses the property details (beds, baths, sqft, condition) to find better comps. But you can run it standalone with any address.
+
+### What Comp Analyzer Pulls
+
+| Data | Source | MCP Required |
+|------|--------|-------------|
+| Recent comparable sales (addresses, prices, details) | Perplexity search | Perplexity |
+| Detailed comp data (sqft, beds, baths, sale date, DOM, condition) | Redfin/Zillow scrape | Firecrawl |
+| Assessed values, last recorded sale | County assessor | Firecrawl or Chrome |
+| Automated value estimates (Zestimate, Redfin Estimate) | Perplexity search | Perplexity |
+| Area median price, average $/sqft, market trends | Perplexity search | Perplexity |
+
+**Confidence levels:** The report tells you how reliable the ARV estimate is — HIGH (4+ tight comps), MODERATE (3-4 comps with some variance), LOW (1-2 comps or wide search area), VERY LOW (no good comps, zip code averages only). You always know how much to trust the number.
+
+---
+
 ## Help Us Map More Cities
 
 Property Recon can auto-check code violations in cities that publish open data (Dallas, New Orleans, LA, San Francisco, Buffalo, Mesa AZ, Seattle — so far). For other cities, it falls back to a phone number.
@@ -327,7 +366,6 @@ Property Recon can auto-check code violations in cities that publish open data (
 
 More tools are in development:
 
-- **Comp Analyzer** — finds comps and calculates ARV automatically
 - **Conversation Coach** — tells you what to say to a seller based on their situation
 - **Creative Finance Structurer** — structures sub-to, seller finance, wraps with full math
 - **Deal Stacker** — ranks your pipeline and tells you which deals to focus on

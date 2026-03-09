@@ -29,6 +29,7 @@ AI-powered tools for real estate wholesalers. Give Claude an address and it pull
 |-------|------|----------|
 | Start Here | `.claudeskills/start-here-SKILL.md` | First run, routing, pipeline status, "what should I do next" |
 | Property Recon | `.claudeskills/property-recon-SKILL.md` | You have an address and need the full picture — owner, value, taxes, liens, motivation score |
+| Comp Analyzer | `.claudeskills/comp-analyzer-SKILL.md` | You need comps, ARV, and a defensible number to make offers or build deal packages |
 | Rehab Estimator | `.claudeskills/rehab-estimator-SKILL.md` | You have a listing with photos and need repair cost estimates across 3 scenarios |
 
 ## Skill Chain

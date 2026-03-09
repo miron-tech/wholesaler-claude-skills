@@ -38,7 +38,7 @@ Every skill in the system, what it does, and where it sits in the chain.
   /start-here              Orchestrate, route, prioritize  v1.0
   /property-recon          Full property intel from address v1.0
   /rehab-estimator         Photo-based repair estimates    v1.0
-  /comp-analyzer           Comparable sales + ARV          coming
+  /comp-analyzer           Comparable sales + ARV          v1.0
   /creative-finance        Sub-to, seller finance, hybrid  coming
   /conversation-coach      Scripts + objection handling    coming
   /deal-stacker            Pipeline scoring + prioritize   coming
