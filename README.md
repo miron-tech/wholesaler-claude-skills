@@ -354,6 +354,35 @@ Works best after Property Recon — it uses the property details (beds, baths, s
 
 ---
 
+## Seller Conversation Coach
+
+Paste any seller conversation — text threads, emails, call notes — and get the exact next message to send.
+
+**What it does:**
+
+1. **Reads the conversation** — identifies seller motivation level, emotional state, and objections
+2. **Detects creative finance opportunities** — catches when a seller mentions their mortgage, low rate, or payments
+3. **Recommends your next message** — the actual words to send, not a generic template
+4. **Explains why it works** — so you learn to read sellers, not just copy-paste
+5. **Predicts their response** — tells you what they'll likely say back and how to handle each scenario
+
+**Examples:**
+```
+Here's my text thread with a seller on Cedar View Rd. He hasn't responded in 5 days. What should I say?
+```
+```
+This seller keeps saying her neighbor sold for $175K. How do I handle this objection?
+```
+```
+Probate lead — daughter inherited the house, sounds overwhelmed. What's the right approach?
+```
+
+Works best after Property Recon — it uses your intel (tax status, ownership length, Redfin estimate) to calibrate the coaching. But you can run it standalone with just the conversation.
+
+**MCP needed:** None — this skill runs standalone. Enhanced by Property Recon and Comp Analyzer data when available.
+
+---
+
 ## Help Us Map More Cities
 
 Property Recon can auto-check code violations in cities that publish open data (Dallas, New Orleans, LA, San Francisco, Buffalo, Mesa AZ, Seattle — so far). For other cities, it falls back to a phone number.
@@ -366,11 +395,18 @@ Property Recon can auto-check code violations in cities that publish open data (
 
 More tools are in development:
 
-- **Conversation Coach** — tells you what to say to a seller based on their situation
 - **Creative Finance Structurer** — structures sub-to, seller finance, wraps with full math
 - **Deal Stacker** — ranks your pipeline and tells you which deals to focus on
 
 Follow the repo for updates.
+
+---
+
+## Tool #7: CyclSales Connect (CRM Bridge) — Client Only
+
+The 7th tool connects everything to your CRM. Create contacts, update pipelines, send messages, book appointments, and manage your entire deal flow — all from Claude Code, talking directly to your CyclSales CRM.
+
+This tool is available exclusively to CyclSales clients. **[Book a demo](https://cyclsales.com)** to get access.
 
 ---
 

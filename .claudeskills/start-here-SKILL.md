@@ -40,7 +40,7 @@ Every skill in the system, what it does, and where it sits in the chain.
   /rehab-estimator         Photo-based repair estimates    v1.0
   /comp-analyzer           Comparable sales + ARV          v1.0
   /creative-finance        Sub-to, seller finance, hybrid  coming
-  /conversation-coach      Scripts + objection handling    coming
+  /conversation-coach      Scripts + objection handling    v1.0
   /deal-stacker            Pipeline scoring + prioritize   coming
   /crm-connect             CyclSales/GHL integration       coming
 ```
