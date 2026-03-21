@@ -391,11 +391,51 @@ Property Recon can auto-check code violations in cities that publish open data (
 
 ---
 
+## Creative Finance Structurer
+
+When a cash offer doesn't work, structure a creative deal instead. Give Claude the property details, the seller's situation, and the existing mortgage info — it runs the numbers on every structure and tells you which one to use.
+
+**What it does:**
+
+1. **Analyzes the deal for creative finance viability** — subject-to, seller financing, lease option, wrap mortgage, and hybrids
+2. **Calculates the full math** — monthly payments, cash flow, equity position, cash-on-cash ROI, and exit scenarios
+3. **Compares creative vs. cash offer** — shows both options side by side so you can see the real difference
+4. **Writes your seller pitch** — the exact words to say to present the creative offer
+5. **Discloses the risks** — due-on-sale clause, legal complexity, what to watch for
+
+**Examples:**
+```
+Structure a deal for 742 Maple Ave, San Antonio TX 78201. Owner owes $95K at 3.25%, 24 years left. Property worth $165K as-is. Relocating in 30 days.
+```
+```
+Cash offer doesn't pencil on this one — what creative structures make sense for 4821 Cedar Ln, Memphis TN?
+```
+```
+Seller is free and clear on a house worth $180K. She wants income, not a lump sum. What do I offer her?
+```
+
+Works best after Property Recon and Comp Analyzer — uses the mortgage data, ARV, and repair totals from those reports. But you can run it standalone with the details you have.
+
+**MCP needed:** Perplexity (pulls current mortgage rates and rental rates so the math is based on real numbers, not assumptions).
+
+### What Creative Finance Structurer Analyzes
+
+| Structure | When It Works | Key Numbers |
+|-----------|--------------|-------------|
+| Subject-To | Seller has a low-rate mortgage they'd lose by listing | Monthly PITI, equity captured, cash-on-cash ROI |
+| Seller Financing | Property is free and clear, seller wants income | Down payment, monthly payment, seller's total return |
+| Lease Option | Seller wants their price but can wait, good condition | Monthly spread, option fee, profit at exercise |
+| Wrap Mortgage | You hold sub-to and want to sell with financing | Underlying vs. wrap payment, monthly spread |
+| Hybrid | None of the above fits perfectly | Combination of any two structures |
+
+Every analysis includes a cash offer comparison so you always know the difference between creative and traditional.
+
+---
+
 ## More Tools Coming
 
 More tools are in development:
 
-- **Creative Finance Structurer** — structures sub-to, seller finance, wraps with full math
 - **Deal Stacker** — ranks your pipeline and tells you which deals to focus on
 
 Follow the repo for updates.

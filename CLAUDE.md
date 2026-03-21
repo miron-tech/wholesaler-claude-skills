@@ -31,6 +31,7 @@ AI-powered tools for real estate wholesalers. Give Claude an address and it pull
 | Property Recon | `.claudeskills/property-recon-SKILL.md` | You have an address and need the full picture — owner, value, taxes, liens, motivation score |
 | Comp Analyzer | `.claudeskills/comp-analyzer-SKILL.md` | You need comps, ARV, and a defensible number to make offers or build deal packages |
 | Rehab Estimator | `.claudeskills/rehab-estimator-SKILL.md` | You have a listing with photos and need repair cost estimates across 3 scenarios |
+| Creative Finance Structurer | `.claudeskills/creative-finance-SKILL.md` | A cash offer doesn't work — structure a subject-to, seller finance, lease option, or wrap |
 | Conversation Coach | `.claudeskills/conversation-coach-SKILL.md` | You need to know what to say to a seller based on their situation and objections |
 
 ## Skill Chain
@@ -47,6 +48,7 @@ The orchestrator (`start-here-SKILL.md`) handles all routing. Quick reference:
 IF user provides an address → Check ./deals/ for existing data, then /property-recon
 IF user says "rehab" or "estimate" or provides photos → /rehab-estimator
 IF user says "comps" or "ARV" or "value" → /comp-analyzer
+IF user says "creative finance" or "sub-to" or "seller finance" or "structure" or "wrap" or "lease option" → /creative-finance
 IF user says "call" or "script" or "objection" or "what do I say" → /conversation-coach
 IF user says "analyze this deal" → Chain: /property-recon → /comp-analyzer → /rehab-estimator
 IF user says "pipeline" or "what should I work on" → /deal-stacker

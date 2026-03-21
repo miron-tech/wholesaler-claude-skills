@@ -39,7 +39,7 @@ Every skill in the system, what it does, and where it sits in the chain.
   /property-recon          Full property intel from address v1.0
   /rehab-estimator         Photo-based repair estimates    v1.0
   /comp-analyzer           Comparable sales + ARV          v1.0
-  /creative-finance        Sub-to, seller finance, hybrid  coming
+  /creative-finance        Sub-to, seller finance, hybrid  v1.0
   /conversation-coach      Scripts + objection handling    v1.0
   /deal-stacker            Pipeline scoring + prioritize   coming
   /crm-connect             CyclSales/GHL integration       coming
