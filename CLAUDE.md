@@ -33,6 +33,7 @@ AI-powered tools for real estate wholesalers. Give Claude an address and it pull
 | Rehab Estimator | `.claudeskills/rehab-estimator-SKILL.md` | You have a listing with photos and need repair cost estimates across 3 scenarios |
 | Creative Finance Structurer | `.claudeskills/creative-finance-SKILL.md` | A cash offer doesn't work — structure a subject-to, seller finance, lease option, or wrap |
 | Conversation Coach | `.claudeskills/conversation-coach-SKILL.md` | You need to know what to say to a seller based on their situation and objections |
+| Deal Stacker | `.claudeskills/deal-stacker-SKILL.md` | Rank your pipeline and know which deals to focus on this week |
 
 ## Skill Chain
 ```
@@ -51,7 +52,7 @@ IF user says "comps" or "ARV" or "value" → /comp-analyzer
 IF user says "creative finance" or "sub-to" or "seller finance" or "structure" or "wrap" or "lease option" → /creative-finance
 IF user says "call" or "script" or "objection" or "what do I say" → /conversation-coach
 IF user says "analyze this deal" → Chain: /property-recon → /comp-analyzer → /rehab-estimator
-IF user says "pipeline" or "what should I work on" → /deal-stacker
+IF user says "pipeline" or "what should I work on" or "stack" or "rank my deals" or "which deals" → /deal-stacker
 IF vague request → Show pipeline status, suggest highest-impact action
 ```
 

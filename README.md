@@ -432,13 +432,43 @@ Every analysis includes a cash offer comparison so you always know the differenc
 
 ---
 
-## More Tools Coming
+## Deal Stacker
 
-More tools are in development:
+Stop chasing 20 leads equally. Stack-rank your pipeline so you spend this week on the 3 deals most likely to close and pay you.
 
-- **Deal Stacker** — ranks your pipeline and tells you which deals to focus on
+**What it does:**
 
-Follow the repo for updates.
+1. **Scores every deal across 5 dimensions** — Spread (profit potential), Temperature (seller motivation), Ability (deal certainty), Clock (speed to close), Kick (effort required) — 0-25 points total
+2. **Classifies each deal by exit strategy** — cash assignment, sub-to, seller finance, lease option, or JV — before ranking
+3. **Identifies your top 3 deals to focus on this week** — with the ONE next action per deal, not vague advice
+4. **Verifies ARV when spread is thin** — uses Perplexity and Firecrawl to cross-check numbers before you prioritize on bad data
+5. **Flags what's dying** — stale leads, expiring contracts, deals with no buyer and 10 days left
+6. **Builds a day-by-day schedule starting from today** — not a generic template
+
+**Examples:**
+```
+Here's my pipeline — 8 leads, 2 under contract. Which ones should I focus on this week?
+```
+```
+I have 3 deals in negotiation. Which one is closest to closing?
+```
+```
+Stack rank my pipeline. I have 20 hours this week and need to close 1 deal this month.
+```
+
+Works best after you've run Property Recon and Comp Analyzer on your deals — it uses that data automatically. But you can run it with just the basics (address, status, asking price, ARV guess) and it'll still tell you where to focus.
+
+**MCP needed:** Perplexity (market data, ARV verification, rental rates for creative deals). Firecrawl optional for deep comp verification on thin-spread deals.
+
+### What Deal Stacker Produces
+
+| Output | What It Includes |
+|--------|-----------------|
+| Ranked pipeline table | All deals with STACK scores, exit strategy, and priority tier |
+| Top 3 deep dive | Numbers, exit strategy recommendation, ARV status, ONE next action |
+| Other deals | Brief status + action for non-priority deals |
+| Pipeline health flags | Expiring contracts, stale leads, thin spreads, empty pipeline warnings |
+| Weekly schedule | Day-by-day action plan built around your available hours, starting from today |
 
 ---
 
