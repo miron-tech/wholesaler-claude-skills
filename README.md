@@ -1,6 +1,6 @@
 # AI Tools for Real Estate Wholesalers
 
-Built by [CyclSales](https://cyclsales.com) — AI-powered CRM for real estate investors.
+Built by [RankGrid](https://rankgrid.ai), a local SEO agency for real estate investors and contractors.
 
 Give Claude an address. It pulls owner info, tax records, mortgage data, red flags, and a motivation score — all from public records, in under 2 minutes. No paid lookup tools needed.
 
@@ -147,59 +147,51 @@ No configuration needed. Claude Code detects it automatically.
 
 ## Step 5: Connect Your API Keys
 
-Now you need to tell Claude Code where to find your Perplexity and Firecrawl keys. You do this by creating a config file.
+Now you need to tell Claude Code where to find your Perplexity and Firecrawl keys.
 
-### Option A: Global config (works in every project)
+### Option A: Add them once for every project (recommended)
 
-1. Open your terminal
-2. Create the config folder and file:
+Run these two commands in your terminal (Terminal on Mac, PowerShell on Windows). Replace the keys with yours:
 
-   **Mac/Linux:**
-   ```bash
-   mkdir -p ~/.claude && touch ~/.claude/mcp.json
-   ```
+```bash
+claude mcp add --scope user perplexity -e PERPLEXITY_API_KEY=pplx-your-key-here -- npx -y @perplexity-ai/mcp-server
+claude mcp add --scope user firecrawl -e FIRECRAWL_API_KEY=fc-your-key-here -- npx -y firecrawl-mcp
+```
 
-   **Windows (PowerShell):**
-   ```powershell
-   New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude" | Out-Null
-   New-Item -ItemType File -Force -Path "$env:USERPROFILE\.claude\mcp.json" | Out-Null
-   ```
-
-3. Open the file in a text editor and paste this (replace the two API keys with yours):
-
-   ```json
-   {
-     "mcpServers": {
-       "perplexity": {
-         "command": "npx",
-         "args": ["-y", "@perplexity-ai/mcp-server"],
-         "env": {
-           "PERPLEXITY_API_KEY": "pplx-your-key-here"
-         }
-       },
-       "firecrawl": {
-         "command": "npx",
-         "args": ["-y", "firecrawl-mcp"],
-         "env": {
-           "FIRECRAWL_API_KEY": "fc-your-key-here"
-         }
-       }
-     }
-   }
-   ```
-
-4. Save the file
-5. **Fully quit and restart Claude Code** — it only reads this file on startup
+`--scope user` saves them to your user config (`~/.claude.json`), so they're available in every folder. You need [Node.js](https://nodejs.org/) installed for `npx` to work. Restart Claude Code after adding them.
 
 ### Option B: Project-only config
 
-If you only want these tools available in one project folder, create a `.mcp.json` file in that project folder instead of `~/.claude/mcp.json`. Same contents.
+If you only want these tools available in one project folder, create a file called `.mcp.json` in that folder and paste this (replace the two API keys with yours):
+
+```json
+{
+  "mcpServers": {
+    "perplexity": {
+      "command": "npx",
+      "args": ["-y", "@perplexity-ai/mcp-server"],
+      "env": {
+        "PERPLEXITY_API_KEY": "pplx-your-key-here"
+      }
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "fc-your-key-here"
+      }
+    }
+  }
+}
+```
+
+Save the file and restart Claude Code from inside that folder. The first time, Claude Code asks you to approve the servers in `.mcp.json`. Say yes.
 
 ### How to verify it's working
 
 1. Start Claude Code (`claude` in your terminal)
-2. Look for "perplexity" and "firecrawl" in the MCP server list when Claude starts up
-3. If you don't see them, double-check your key formatting and restart Claude Code
+2. Type `/mcp` and press Enter. You should see "perplexity" and "firecrawl" listed as connected
+3. If you don't see them, run `claude mcp list` in your terminal, double-check your key formatting, and restart Claude Code
 
 ---
 
@@ -472,11 +464,9 @@ Works best after you've run Property Recon and Comp Analyzer on your deals — i
 
 ---
 
-## Tool #7: CyclSales Connect (CRM Bridge) — Client Only
+## Want It Connected to a CRM?
 
-The 7th tool connects everything to your CRM. Create contacts, update pipelines, send messages, book appointments, and manage your entire deal flow — all from Claude Code, talking directly to your CyclSales CRM.
-
-This tool is available exclusively to CyclSales clients. **[Book a demo](https://cyclsales.com)** to get access.
+Want this connected to a CRM with automated follow-up? That's what the RankGrid platform does: https://rankgrid.ai
 
 ---
 
@@ -490,11 +480,11 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
 
 **Perplexity or Firecrawl not connecting**
 - Make sure you fully quit and restarted Claude Code after adding your keys
-- Make sure the JSON in your `mcp.json` file is valid (no trailing commas, matching brackets)
+- If you used a `.mcp.json` file, make sure the JSON is valid (no trailing commas, matching brackets)
 - Check that your Perplexity account has credits loaded
 
 **"No MCP servers found"**
-Your `mcp.json` file is either in the wrong location or has a formatting error. The file should be at `~/.claude/mcp.json` (Mac/Linux) or `C:\Users\YourName\.claude\mcp.json` (Windows).
+Run `claude mcp list` in your terminal to see what's configured. If nothing shows up, add the servers again with the `claude mcp add --scope user ...` commands from Step 5. If you used a project `.mcp.json`, make sure it sits in the folder you start `claude` from and that you approved it when Claude Code asked.
 
 **Chrome extension not working**
 Make sure you're using Google Chrome (not Safari, Firefox, or Edge). The extension needs to be installed and enabled in Chrome's extension settings.
@@ -518,23 +508,10 @@ The free tier gives you 500 one-time credits. Once they're used up, you'll need 
 
 ---
 
-## Want This on Autopilot?
-
-These tools are powerful inside Claude Code. But if you want property research, follow-up, pipeline tracking, and deal analysis running automatically — with AI handling your inbound calls and CRM doing your follow-up — that's what [CyclSales](https://cyclsales.com) does.
-
-- AI-powered follow-up that runs 24/7 (SMS, email, voice)
-- Pipeline with custom fields and stages built for wholesale
-- Voice AI that handles inbound calls and qualifies sellers
-- Done-for-you setup in 7-10 days
-
-**[Book a demo](https://cyclsales.com)** and see what it looks like when these tools run on autopilot.
-
----
-
 ## License
 
-MIT — use these however you want. If they help you close a deal, that's all we need.
+MIT. See [LICENSE](LICENSE). Use these however you want. If they help you close a deal, that's all we need.
 
 ---
 
-Built by [Miron Briley](https://cyclsales.com) at CyclSales.
+Built by Miron Briley at [RankGrid](https://rankgrid.ai). RankGrid builds lead websites that rank and gets real estate investors and contractors found on Google and AI search. Want to see where your site stands? Get a [free SEO audit](https://audit.rankgrid.ai).

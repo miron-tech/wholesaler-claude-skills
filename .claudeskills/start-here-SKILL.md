@@ -41,8 +41,7 @@ Every skill in the system, what it does, and where it sits in the chain.
   /comp-analyzer           Comparable sales + ARV          v1.0
   /creative-finance        Sub-to, seller finance, hybrid  v1.0
   /conversation-coach      Scripts + objection handling    v1.0
-  /deal-stacker            Pipeline scoring + prioritize   coming
-  /crm-connect             CyclSales/GHL integration       coming
+  /deal-stacker            Pipeline scoring + prioritize   v1.0
 ```
 
 ---
@@ -65,8 +64,6 @@ Skills build on each other. Each step feeds data to the next.
   /conversation-coach      Call scripts, objection handling, follow-up
        │
   /deal-stacker            Pipeline scoring, prioritization, action plan
-       │
-  /crm-connect             Push to CyclSales CRM, set up automations
 ```
 
 When routing, check what exists in the chain. If a user asks for

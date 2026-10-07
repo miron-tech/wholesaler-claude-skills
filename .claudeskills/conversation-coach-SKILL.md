@@ -566,11 +566,11 @@ After 2-3 more productive text exchanges → suggest a phone call:
 
 > Text conversation, tax delinquent list, Phoenix AZ.
 >
-> **Me:** Hi Maria, this is Jake with Desert Cash Homes. I buy houses in Phoenix and I had a quick question about your place on Elm St. Would you ever consider selling it?
+> **Me:** Hi Maria, this is Mike with Desert Cash Homes. I buy houses in Phoenix and I had a quick question about your place on Elm St. Would you ever consider selling it?
 >
 > **Maria:** who is this and how did you get my number
 >
-> **Me:** Totally fair question. I'm Jake, I buy houses in the Phoenix area. I use a public records service to find homeowners. I know it's unexpected — I just had a quick question about the property if you have 30 seconds.
+> **Me:** Totally fair question. I'm Mike, I buy houses in the Phoenix area. I use a public records service to find homeowners. I know it's unexpected — I just had a quick question about the property if you have 30 seconds.
 >
 > **Maria:** I guess. What do you want to know
 >

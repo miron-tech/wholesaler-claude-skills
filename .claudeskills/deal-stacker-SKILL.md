@@ -31,7 +31,7 @@ description: "Rank and prioritize your wholesale deal pipeline. Use when a whole
 ## WHAT THIS SKILL DOES NOT DO
 
 - Does not manage your pipeline for you (you update the data)
-- Does not pull leads from a CRM automatically (unless CyclSales Connect skill is chained)
+- Does not pull leads from a CRM automatically (you paste or describe your deals)
 - Does not guarantee which deals will close — it's a prioritization framework, not a crystal ball
 
 ---
@@ -283,7 +283,7 @@ After scoring all deals, flag these conditions:
 | Rental rates (for creative deals) | Perplexity | "Average monthly rent for [beds]/[baths] house in [zip]" — always use ZIP-level, not citywide |
 | Market speed / DOM | Perplexity | "Average days on market for homes in [zip] and current inventory trends" |
 | Mortgage rates (for sub-to comparison) | Perplexity | "Current 30-year fixed mortgage rate in [state]" |
-| Seller conversation history | CyclSales Connect | Pull from CRM if available |
+| Seller conversation history | User | Paste text threads or call notes if available |
 
 ### Parallel Execution Plan
 
@@ -566,7 +566,7 @@ Before delivering, verify:
 | Limitation | Workaround |
 |-----------|------------|
 | Perplexity returns 0-2 actual comps for ARV queries | Use Comp Analyzer skill or Firecrawl + Redfin for hard comp data |
-| Can't auto-pull pipeline from CRM | User provides deals manually, or chain with CyclSales Connect if configured |
+| Can't auto-pull pipeline from CRM | User provides deals manually |
 | Creative finance scoring requires mortgage info | If unknown, coach wholesaler to ask seller (Conversation Coach has trigger phrases) |
 | Market data (DOM, appreciation) is metro-level from Perplexity | ZIP-level data is more accurate — always ask for ZIP-specific stats |
 | Dispo difficulty is estimated, not measured | Would need buyer list data and historical close rates to be precise |

@@ -1,4 +1,4 @@
-# Wholesaler Claude Skills — by CyclSales
+# Wholesaler Claude Skills by RankGrid
 
 ## What This Is
 AI-powered tools for real estate wholesalers. Give Claude an address and it pulls everything you need.
@@ -39,7 +39,6 @@ AI-powered tools for real estate wholesalers. Give Claude an address and it pull
 ```
 /property-recon → /comp-analyzer → /rehab-estimator → /creative-finance → /conversation-coach → /deal-stacker
 ```
-> **Tool #7 (CyclSales Connect)** — CRM integration is available exclusively to CyclSales clients.
 
 ## Routing
 
@@ -67,5 +66,5 @@ All deal data persists in `./deals/`. See `_system/deal-memory.md` for the full 
 - Pipeline registry (append-only)
 - Learnings journal (calibrates estimates over time)
 
-## Built by CyclSales
-These tools were built by [CyclSales](https://cyclsales.com) — an AI-powered CRM for real estate investors and service businesses. If you want these workflows running on autopilot with AI follow-up, pipeline management, and voice AI — check out what we built.
+## Built by RankGrid
+These tools were built by [RankGrid](https://rankgrid.ai), a local SEO agency for real estate investors and contractors. Want this connected to a CRM with automated follow-up? That's what the RankGrid platform does: https://rankgrid.ai

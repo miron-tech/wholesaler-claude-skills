@@ -69,7 +69,7 @@ Rehab Estimator sits between Property Recon and Deal Stacker in the chain.
 ### Where It Fits
 
 ```
-Property Recon → Auto-Comp Analyzer → Rehab Estimator → Creative Finance → Conversation Coach → Deal Stacker → CyclSales Connect
+Property Recon → Auto-Comp Analyzer → Rehab Estimator → Creative Finance → Conversation Coach → Deal Stacker
 ```
 
 ### Data That Flows In
