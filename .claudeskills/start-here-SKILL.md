@@ -213,7 +213,7 @@ status immediately:
   ★ Priority Action
   ├── 9631 Silver Meadow Dr    Rehab done, no comps yet
   │   → /comp-analyzer         Pull ARV (~5 min)
-  └── 4973 Cedar View Rd       Recon only, 4 days old
+  └── 5678 Sample Rd       Recon only, 4 days old
       → /rehab-estimator       Need photos for estimate
 
   ○ No Action Needed

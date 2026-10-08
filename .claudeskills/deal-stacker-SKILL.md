@@ -380,7 +380,7 @@ For each deal in the top 3, explicitly recommend an exit strategy:
 >
 > 2. **2847 Bartlett Blvd, Memphis 38134** — Under contract at $72K. ARV $165K. Repairs $40K. Probate lead. Contract expires in 10 days. No buyer yet. Under contract 18 days.
 >
-> 3. **4973 Cedar View Rd, Memphis 38118** — Negotiating via text. D4D lead. Boris, 72, daughter in Atlanta. Mentioned he refinanced a few years back. Sub-to opportunity. Previous skills run: Property Recon, Comp Analyzer (ARV $180K, MODERATE confidence), Creative Finance ($65K owed at 3.25%, sub-to recommended, $503/mo cash flow, $90K equity), Conversation Coach (motivation MODERATE leaning HIGH).
+> 3. **5678 Sample Rd, Memphis 38118** — Negotiating via text. D4D lead. Walter, 72, daughter in Atlanta. Mentioned he refinanced a few years back. Sub-to opportunity. Previous skills run: Property Recon, Comp Analyzer (ARV $180K, MODERATE confidence), Creative Finance ($65K owed at 3.25%, sub-to recommended, $503/mo cash flow, $90K equity), Conversation Coach (motivation MODERATE leaning HIGH).
 >
 > 4. **891 Getwell Rd, Memphis 38111** — New lead, cold call. 3/1, needs work. Owner said "I need at least $120K." Called 3 days ago.
 >
@@ -401,7 +401,7 @@ For each deal in the top 3, explicitly recommend an exit strategy:
 |------|---------|-------|---|---|---|---|---|------|----------|
 | **1** | **1456 Dearing Rd** | **22** | 5 | 5 | 3 | 4 | 5 | Cash Assignment | **CLOSE THIS WEEK** |
 | **2** | **2847 Bartlett Blvd** | **18** | 1⚠️ | 5 | 4 | 4 | 4 | Cash (verify ARV) | **URGENT — DISPO** |
-| **3** | **4973 Cedar View Rd** | **14** | 5★ | 3 | 2 | 2 | 2 | Sub-To | **WARM — CREATIVE** |
+| **3** | **5678 Sample Rd** | **14** | 5★ | 3 | 2 | 2 | 2 | Sub-To | **WARM — CREATIVE** |
 | 4 | 891 Getwell Rd | 8 | 1 | 3 | 1 | 1 | 2 | Dead at $120K | NURTURE |
 | 5 | 5520 Raleigh Lagrange | 6 | 2 | 1 | 1 | 1 | 1 | Unknown | REVIEW |
 
@@ -458,24 +458,24 @@ Two scenarios based on ARV:
 
 ---
 
-**#3 — 4973 Cedar View Rd, Memphis 38118 (STACK: 14/25)**
-**Exit strategy: SUB-TO** | **Negotiating via text, Boris (72), daughter in Atlanta**
+**#3 — 5678 Sample Rd, Memphis 38118 (STACK: 14/25)**
+**Exit strategy: SUB-TO** | **Negotiating via text, Walter (72), daughter in Atlanta**
 
 *Previous skill data available: Property Recon ✅, Comp Analyzer ✅, Creative Finance ✅, Conversation Coach ✅*
 
 The numbers (verified by Comp Analyzer + Creative Finance):
 - ARV: $180K (MODERATE confidence) | As-is: $109-140K | Redfin estimate: $159K
-- Boris owes: $65K at 3.25% (2021 refi), ~25 years remaining
+- Walter owes: $65K at 3.25% (2021 refi), ~25 years remaining
 - PITI: ~$450/mo | Market rent (38118): $1,095-$1,200/mo
 - Net cash flow (with 15% reserves): **$503/mo**
 - Equity capture at takeover: **~$90K**
 - Cash-on-cash ROI: **86%**
 
-Why not ranked higher: Boris hasn't committed. Motivation is MODERATE leaning HIGH (Conversation Coach assessment). No price or terms discussed yet. You're in rapport-building phase — 2-3 more conversations before introducing sub-to.
+Why not ranked higher: Walter hasn't committed. Motivation is MODERATE leaning HIGH (Conversation Coach assessment). No price or terms discussed yet. You're in rapport-building phase — 2-3 more conversations before introducing sub-to.
 
 ⚠️ Memphis declining 2.5% YoY. This is a cash flow play, not appreciation. $503/mo makes it worth it.
 
-**ONE ACTION:** Text Boris this week. Don't pitch the deal. Ask about his daughter. Goal: get him on a phone call. Once on the phone, use Conversation Coach's "What would it look like if..." framework to plant the sub-to seed.
+**ONE ACTION:** Text Walter this week. Don't pitch the deal. Ask about his daughter. Goal: get him on a phone call. Once on the phone, use Conversation Coach's "What would it look like if..." framework to plant the sub-to seed.
 
 ---
 
@@ -503,9 +503,9 @@ D4D lead. "Not interested right now" 12 days ago. No numbers, no relationship.
 | ⚠️ STALE | Raleigh Lagrange — 12 days no contact |
 | ⚠️ LEAD DROUGHT | Only 5 deals total. Need 8-10 for consistent closings. |
 | Active deals (15+) | 2 — need 3-4 |
-| Creative deals in progress | 1 (Cedar View sub-to — all analysis done, execution phase) |
+| Creative deals in progress | 1 (Sample sub-to — all analysis done, execution phase) |
 | Dead/dying | 1-2 (Raleigh Lagrange definitely, Getwell probably) |
-| Pipeline value | $40-55K assignment fees + $90K equity capture (Cedar View) |
+| Pipeline value | $40-55K assignment fees + $90K equity capture (Sample) |
 | Goal progress | ON TRACK if Dearing closes + Bartlett finds a buyer. Thin margin for error. |
 
 ---
@@ -518,13 +518,13 @@ D4D lead. "Not interested right now" 12 days ago. No numbers, no relationship.
 | **Mon** | #2 Bartlett Blvd | Verify ARV — check Redfin comps. If $180K+, build dispo blast. | 2 hrs |
 | **Tue** | #1 Dearing Rd | Follow up on contract. Signed? Questions? | 1 hr |
 | **Tue** | #2 Bartlett Blvd | Send dispo blast — VIP top 5 buyers + mass list + SMS | 2 hrs |
-| **Wed** | #3 Cedar View | Text Boris. Ask about daughter. Keep rapport going. | 30 min |
+| **Wed** | #3 Sample | Text Walter. Ask about daughter. Keep rapport going. | 30 min |
 | **Wed** | #2 Bartlett Blvd | Follow up buyer responses. Schedule property showings. | 2 hrs |
 | **Wed** | #4 Getwell Rd | One discovery call. Mortgage? Condition? Timeline? | 30 min |
 | **Thu** | #1 Dearing Rd | Contract should be signed. Start dispo prep if yes. | 1 hr |
 | **Thu** | #2 Bartlett Blvd | No buyer? Drop price $3-5K or start JV outreach. | 1 hr |
 | **Thu** | #5 Raleigh Lagrange | Final text. No response in 7 days = drip list. | 15 min |
-| **Fri** | #3 Cedar View | If Boris responded, try to schedule phone call for next week. | 30 min |
+| **Fri** | #3 Sample | If Walter responded, try to schedule phone call for next week. | 30 min |
 | **Fri** | Pipeline | Review all 5 deals. Update status. Re-stack for next week. | 1 hr |
 | | | **Total: ~14 hrs** (leaves 11 hrs for lead gen — **you need it**) | |
 

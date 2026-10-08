@@ -42,7 +42,7 @@ Read ./deals/ per _system/deal-memory.md
 
 **Per-deal files** (one directory per property):
 Each property gets its own folder named with a URL-safe slug of the
-address (e.g., `4973-cedar-view-rd-memphis-tn-38118/`). Skills write
+address (e.g., `5678-sample-rd-memphis-tn-38118/`). Skills write
 their output here.
 
 **Market cache files** (reusable across deals):
@@ -173,7 +173,7 @@ Last Verified: YYYY-MM-DD
 ## Assessor
 - URL: [assessor URL]
 - Search by: Address (street number + street name separate)
-- Quirks: Don't enter street suffix. Use "Cedar View" not "Cedar View Rd"
+- Quirks: Don't enter street suffix. Use "Sample" not "Sample Rd"
 - Sections to expand: Improvement Details, Sales History, Appraisal
 
 ## Trustee / Tax Collector
@@ -207,7 +207,7 @@ File: `./deals/pipeline.md`
 
 | Address | ZIP | Motivation | MAO Range | Status | Last Updated | Notes |
 |---------|-----|-----------|-----------|--------|-------------|-------|
-| 4973 Cedar View Rd, Memphis TN | 38118 | 2/25 LOW | $80K-$90K | Recon done | 2026-03-03 | Owner-occupied, long-term |
+| 5678 Sample Rd, Memphis TN | 38118 | 2/25 LOW | $80K-$90K | Recon done | 2026-03-03 | Owner-occupied, long-term |
 | 9631 Silver Meadow Dr, Dallas TX | 75217 | 5/25 MOD | $56K-$76K | Rehab done | 2026-03-04 | No HVAC, pier & beam |
 
 ## Closed Deals
@@ -245,7 +245,7 @@ File: `./deals/learnings.md`
 - [YYYY-MM-DD] [75217] Dallas 75217 — investor-heavy ZIP. Hard to get deals under 70% rule. Need to target off-market.
 
 ## County Site Notes
-- [YYYY-MM-DD] [Shelby County TN] Don't enter street suffix in assessor search. "Cedar View" not "Cedar View Rd"
+- [YYYY-MM-DD] [Shelby County TN] Don't enter street suffix in assessor search. "Sample" not "Sample Rd"
 - [YYYY-MM-DD] [Dallas County TX] DCAD assessor loads slow — wait 5 seconds after search before screenshot
 
 ## What Worked
@@ -311,7 +311,7 @@ Convert addresses to URL-safe folder names:
 - Include ZIP
 
 Examples:
-- `4973 Cedar View Rd, Memphis, TN 38118` → `4973-cedar-view-rd-memphis-tn-38118`
+- `5678 Sample Rd, Memphis, TN 38118` → `5678-sample-rd-memphis-tn-38118`
 - `9631 Silver Meadow Dr, Dallas, TX 75217` → `9631-silver-meadow-dr-dallas-tx-75217`
 
 ---

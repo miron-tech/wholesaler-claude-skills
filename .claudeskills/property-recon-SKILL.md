@@ -42,7 +42,7 @@ description: "Pull a full property intel report from a single address — owner 
 
 | Input | Required | Example |
 |-------|----------|---------|
-| Property address | Yes | "4973 Cedar View Rd, Memphis, TN 38118" |
+| Property address | Yes | "5678 Sample Rd, Memphis, TN 38118" |
 | What you already know | Helpful | "Drove by it, looks vacant, overgrown yard" |
 | Purpose | Helpful | "Deciding whether to send an offer" or "Building a comp report for my buyer" |
 
@@ -203,7 +203,7 @@ Display this at the end of the report, after FILES SAVED and before WHAT'S NEXT:
 4. **Find** the search fields (street number, street name)
 5. **Fill the form:**
    - Street number field → enter the house number only
-   - Street name field → enter street name WITHOUT direction or suffix (e.g., "Cedar View" not "Cedar View Rd")
+   - Street name field → enter street name WITHOUT direction or suffix (e.g., "Sample" not "Sample Rd")
 6. **Click Submit** and wait 3 seconds for results
 7. **Screenshot** the results page
 8. **Scroll and screenshot** to capture all sections:
@@ -472,12 +472,12 @@ DEFAULT → Run all 7 layers and compile the full report
 
 Shows: PropStream layer, code violations via API, data conflicts, foreclosure discovery, IRA-held property.
 
-> Run a property recon on 3846 Happy Canyon Dr, Dallas, TX 75241.
+> Run a property recon on 1234 Example Dr, Dallas, TX 75241.
 
 ---
 
 ## PROPERTY RECON REPORT
-**3846 Happy Canyon Dr, Dallas, TX 75241**
+**1234 Example Dr, Dallas, TX 75241**
 *Generated: March 8, 2026 | Sources: Redfin (Firecrawl), DCAD Assessor (Chrome), Dallas County Tax Office (Chrome), PropStream (Chrome), Dallas OpenData API, Perplexity web search*
 
 ---
@@ -485,8 +485,8 @@ Shows: PropStream layer, code violations via API, data conflicts, foreclosure di
 ### PROPERTY DETAILS
 | Field | Data | Source |
 |-------|------|--------|
-| Owner | EQUITY TRUST CUSTODIAN FBO TAMSYN CAMPBELL IRA | DCAD |
-| Mailing Address | PO Box 451240, Westlake, OH 44145-0000 | DCAD |
+| Owner | EQUITY TRUST CUSTODIAN FBO JANE SAMPLE IRA | DCAD |
+| Mailing Address | PO Box 000000, Westlake, OH 44145 | DCAD |
 | Property Type | Single-family Residential | DCAD |
 | Beds/Baths | 4 / 1 (full), 0 (half) | DCAD |
 | Sqft | 1,221 | DCAD |
@@ -498,7 +498,7 @@ Shows: PropStream layer, code violations via API, data conflicts, foreclosure di
 | Heating/Cooling | Central Full / Central Full | DCAD |
 | Garage | 1 space | Redfin |
 | Depreciation | 45% | DCAD |
-| Parcel ID | 00000639142000000 | DCAD |
+| Parcel ID | 00000000000000000 | DCAD |
 
 ### OWNERSHIP FLAGS
 - **ENTITY-OWNED** — held in a self-directed IRA through Equity Trust Company (SDIRA custodian, Westlake OH)
@@ -506,7 +506,7 @@ Shows: PropStream layer, code violations via API, data conflicts, foreclosure di
 - **NOT OWNER-OCCUPIED** — no homestead exemption filed
 - **RECENT TRANSFER** — deed transferred 11/13/2025
 - **IRA-HELD** — special tax implications (UBIT, prohibited transactions)
-- **Beneficial owner:** Tamsyn Campbell
+- **Beneficial owner:** Jane Sample
 
 ### PROPSTREAM DATA
 | Field | Data | Source |
@@ -517,7 +517,7 @@ Shows: PropStream layer, code violations via API, data conflicts, foreclosure di
 | Distressed Status | Foreclosure | PropStream |
 | Est. Equity | ~$172,000+ | Calculated |
 
-**FORECLOSURE PURCHASE** — not a voluntary sale. Campbell's IRA acquired at auction for ~10% of market value.
+**FORECLOSURE PURCHASE** — not a voluntary sale. Sample's IRA acquired at auction for ~10% of market value.
 
 ### PRICE HISTORY
 | Date | Event | Price |
@@ -583,7 +583,7 @@ Current owner paid:     ~$19,000 (foreclosure auction)
 ```
 
 ### RECOMMENDED NEXT STEPS
-1. **Skip trace Tamsyn Campbell** — beneficial IRA owner
+1. **Skip trace Jane Sample** — beneficial IRA owner
 2. **Call angle:** "I see you picked up a property at auction in Dallas through your IRA. Taxes are coming due and it needs work — are you looking to move it or hold long-term?"
 3. **Offer strategy:** Owner paid ~$19K. Offer $95-110K = 5x+ return on their IRA investment.
 4. **IRA note:** All offers go through Equity Trust (custodian). Expect slower process.
@@ -598,12 +598,12 @@ Current owner paid:     ~$19,000 (foreclosure auction)
 
 Shows: owner-occupied, taxes current, no code violations portal, honest "skip this lead" verdict.
 
-> Run a property recon on 4973 Cedar View Rd, Memphis, TN 38118.
+> Run a property recon on 5678 Sample Rd, Memphis, TN 38118.
 
 ---
 
 ## PROPERTY RECON REPORT
-**4973 Cedar View Rd, Memphis, TN 38118**
+**5678 Sample Rd, Memphis, TN 38118**
 *Generated: March 3, 2026 | Sources: Redfin, Shelby County Assessor (via Chrome), Shelby County Trustee (via Chrome), Perplexity web search*
 
 ---
@@ -611,8 +611,8 @@ Shows: owner-occupied, taxes current, no code violations portal, honest "skip th
 ### PROPERTY DETAILS
 | Field | Data | Source |
 |-------|------|--------|
-| Owner | DAVIS BORIS G | Shelby County Assessor |
-| Mailing Address | 4973 Cedar View Rd, Memphis TN 38118-7608 | Shelby County Assessor |
+| Owner | DOE WALTER J | Shelby County Assessor |
+| Mailing Address | 5678 Sample Rd, Memphis TN 38118 | Shelby County Assessor |
 | Property Type | Single Family Residential | County Records |
 | Beds/Baths | 3 / 2 | County Records |
 | Sqft | 1,375 (ground floor and total living area) | County Records |
@@ -623,7 +623,7 @@ Shows: owner-occupied, taxes current, no code violations portal, honest "skip th
 | Heat/Cool | Central A/C and Heat | County Records |
 | Fireplace | 1 (pre-fab) | County Records |
 | Basement | None | County Records |
-| Parcel ID | 094401 F00046 | County Records |
+| Parcel ID | 000000 F00000 | County Records |
 | Subdivision | Easthaven Rev Sec D, Lot 492 | County Records |
 | Land Appraisal | $14,500 | County Assessor |
 | Building Appraisal | $105,000 | County Assessor |
@@ -648,7 +648,7 @@ Shows: owner-occupied, taxes current, no code violations portal, honest "skip th
 ### VALUE ESTIMATE
 | Comp | Address | Sale Price | Sqft | $/Sqft | Date |
 |------|---------|-----------|------|--------|------|
-| 1 | 4987 Cedar View Rd | $175,000 | 1,269 | $138 | Sep 15, 2025 |
+| 1 | 5690 Sample Rd | $175,000 | 1,269 | $138 | Sep 15, 2025 |
 | 2 | 4693 Spring Valley Dr | $160,000 | N/A | N/A | Recent |
 | 3 | 4421 English Pecan Cv | $175,000 | N/A | N/A | Recent |
 | 4 | 3380 Spring Water Cv | $135,000 | N/A | N/A | Recent |
@@ -719,7 +719,7 @@ Assignment Fee at $90K: $10,000-$20,000 depending on buyer
 
 ### RECOMMENDED NEXT STEPS
 1. **Low-priority lead** — owner-occupied, taxes current, no obvious distress signals
-2. **If pursuing anyway:** Skip trace Boris G Davis at the Cedar View Rd address
+2. **If pursuing anyway:** Skip trace Walter J Doe at the Sample Rd address
 3. **Only angle:** Long-term owner (32 years) may be thinking about retirement/downsizing — but no urgency
 4. **Better use of time:** Focus on leads with higher motivation scores (absentee, delinquent, vacant)
 

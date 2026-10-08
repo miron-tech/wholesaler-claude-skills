@@ -29,8 +29,8 @@ Last Verified: 2026-03-08
 ## Code Violations (Dallas OpenData — Socrata API)
 - **API — Code Violations (primary):** `https://www.dallasopendata.com/resource/x9pz-kdq9.json?str_num=[HOUSE_NUMBER]&str_nam=[STREET_NAME_UPPERCASE]&$limit=20`
 - **API — 311 Requests (supplement):** `https://www.dallasopendata.com/resource/eaah-n7x2.json?$where=address like '%[HOUSE_NUMBER] [STREET_NAME_UPPERCASE]%'&$limit=20`
-- Search by: str_num + str_nam (CAPS, no suffix — e.g., str_nam=HAPPY CANYON)
+- Search by: str_num + str_nam (CAPS, no suffix — e.g., str_nam=MAIN)
 - No auth needed, returns JSON, free
 - **Chrome fallback (Accela):** `https://aca-prod.accela.com/DALLASTX/APO/APOLookup.aspx?TabName=Home`
 - Phone fallback: Dallas Code Compliance at 214-670-5708 or 311
-- Tested 2026-03-08: API returned 1 closed violation for 3846 Happy Canyon Dr (oversized vehicle, 2017)
+- Tested 2026-03-08: API returned code violation history for a test address as expected

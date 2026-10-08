@@ -275,7 +275,7 @@ After the tactical coaching, explain:
 
 Different seller situations need fundamentally different approaches:
 
-### Aging Owner-Occupied (Boris type)
+### Aging Owner-Occupied (Walter type)
 - **Motivation driver:** Physical burden, family pull, life transition
 - **Emotional state:** Reflective, proud, not rushed
 - **Approach:** Patience. Lead with respect for the home and their years of ownership. Connect to their future (closer to family, simpler life), not the property's problems. Never point out deferred maintenance — they know and they're sensitive about it.
@@ -329,7 +329,7 @@ Different seller situations need fundamentally different approaches:
 
 | Current Channel | Messages Exchanged | Switch To | How to Transition |
 |----------------|-------------------|-----------|-------------------|
-| Text | 6-10 messages | Phone call | "Boris, I'd love to chat about this for a few minutes if you're up for it. Would [day] around [time] work for a quick call?" |
+| Text | 6-10 messages | Phone call | "Walter, I'd love to chat about this for a few minutes if you're up for it. Would [day] around [time] work for a quick call?" |
 | Text | 10+ messages, discussing terms | In-person meeting | "I think this would be easier to talk through in person. I can stop by for 10 minutes — no pressure. When's a good time this week?" |
 | Phone call | 1st call, rapport built | In-person walkthrough | "Would you be okay with me swinging by to see the house? Just so I can give you a real number instead of guessing." |
 | Email | 3+ emails, formal tone | Phone call | "I think a quick phone call would be easier than going back and forth over email. Here's my number — call anytime." |
@@ -466,21 +466,21 @@ IF phone rapport is strong → Suggest in-person walkthrough
 
 > Here's my text conversation with a seller. Driving for dollars lead, Memphis TN.
 >
-> **Me:** Hi Boris, my name is Marcus with Memphis Home Solutions. I was driving through your neighborhood on Cedar View and noticed your property. I buy homes in the Memphis area — would you ever consider selling?
+> **Me:** Hi Walter, my name is Marcus with Memphis Home Solutions. I was driving through your neighborhood on Sample and noticed your property. I buy homes in the Memphis area — would you ever consider selling?
 >
-> **Boris:** I'm not really looking to sell right now. How much would you pay?
+> **Walter:** I'm not really looking to sell right now. How much would you pay?
 >
 > **Me:** That's fair. I'd need to know a little more about the property first. How long have you owned it?
 >
-> **Boris:** Since 1994. Over 30 years. It's a good house, I've kept it up pretty well but it's getting harder these days honestly.
+> **Walter:** Since 1994. Over 30 years. It's a good house, I've kept it up pretty well but it's getting harder these days honestly.
 >
 > **Me:** 30 years — that's impressive. What's making it harder?
 >
-> **Boris:** I'm 72 now. The yard, the plumbing, the AC went out last summer. Things add up. My daughter keeps telling me to move closer to her in Atlanta but I don't know.
+> **Walter:** I'm 72 now. The yard, the plumbing, the AC went out last summer. Things add up. My daughter keeps telling me to move closer to her in Atlanta but I don't know.
 >
 > **Me:** That's a big decision. Is the house paid off or do you still have a mortgage?
 >
-> **Boris:** I refinanced a few years back so I still owe some on it. Not a lot though.
+> **Walter:** I refinanced a few years back so I still owe some on it. Not a lot though.
 >
 > What do I say next?
 
@@ -490,7 +490,7 @@ IF phone rapport is strong → Suggest in-person walkthrough
 
 ## CONVERSATION ANALYSIS
 
-**Seller:** Boris | **Property:** Cedar View Rd, Memphis TN 38118
+**Seller:** Walter | **Property:** Sample Rd, Memphis TN 38118
 **Lead Source:** Driving for dollars
 **Seller Type:** Aging owner-occupied (see profile above)
 **Conversation Stage:** Discovery (mid — 6 messages each)
@@ -534,7 +534,7 @@ IF phone rapport is strong → Suggest in-person walkthrough
 → Reply: "I actually have a way to do that. Want me to walk through what that looks like?" → Creative Finance Structurer
 
 **"I really haven't thought about it that much."**
-→ Reply: "No pressure at all, Boris. Just know I'm here if you want to talk through it. Mind if I check in with you in a couple weeks?"
+→ Reply: "No pressure at all, Walter. Just know I'm here if you want to talk through it. Mind if I check in with you in a couple weeks?"
 
 ### WHAT NOT TO SAY:
 
@@ -548,7 +548,7 @@ IF phone rapport is strong → Suggest in-person walkthrough
 ### CHANNEL SWITCH:
 
 After 2-3 more productive text exchanges → suggest a phone call:
-"Boris, I'd love to chat about this for a few minutes if you're up for it. Would [day] around [time] work for a quick call?"
+"Walter, I'd love to chat about this for a few minutes if you're up for it. Would [day] around [time] work for a quick call?"
 
 ### DATA STILL NEEDED (for future conversations):
 

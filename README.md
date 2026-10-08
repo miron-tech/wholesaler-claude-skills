@@ -360,7 +360,7 @@ Paste any seller conversation — text threads, emails, call notes — and get t
 
 **Examples:**
 ```
-Here's my text thread with a seller on Cedar View Rd. He hasn't responded in 5 days. What should I say?
+Here's my text thread with a seller on Sample Rd. He hasn't responded in 5 days. What should I say?
 ```
 ```
 This seller keeps saying her neighbor sold for $175K. How do I handle this objection?

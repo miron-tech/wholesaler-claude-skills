@@ -7,7 +7,7 @@ Last verified: 2026-03-08
 - Portal: https://search.hcad.org/
 - Parent site: https://hcad.org/ → PROPERTY SEARCH nav link → redirects to search.hcad.org
 - Search type: Address (default tab), Owner Name, Account Number, Advanced
-- Search format: "4726 Cashel Castle Dr" (street number + street name, no city/zip needed)
+- Search format: "1234 Main St" (street number + street name, no city/zip needed)
 - Results: Click account number to open detail page
 - Load time: 2-3 seconds for search, 3-5 seconds for detail page
 

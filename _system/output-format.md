@@ -262,7 +262,7 @@ Used by the orchestrator to show active deals.
   DEAL PIPELINE
 
   ★ Hot (call today)
-  ├── 4973 Cedar View Rd, Memphis     8/25  $80K-$90K MAO
+  ├── 5678 Sample Rd, Memphis     8/25  $80K-$90K MAO
   └── 1234 Oak St, Dallas             11/25 $65K MAO
 
   ◑ Working
@@ -301,13 +301,13 @@ Used by the orchestrator to show active deals.
 ```
 WRONG:
   ## Property Details
-  **Owner:** Boris Davis
+  **Owner:** Walter Doe
   - Absentee: Yes
 
 RIGHT:
   PROPERTY DETAILS
 
-  Owner:     Boris Davis
+  Owner:     Walter Doe
   ├── Absentee     ✓ confirmed
   └── Entity       ✗ individual owner
 ```
@@ -357,7 +357,7 @@ RIGHT:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
                                                     ← blank line
 ..PROPERTY RECON REPORT                             ← 2-space indent
-..4973 Cedar View Rd, Memphis, TN 38118             ← 2-space indent
+..5678 Sample Rd, Memphis, TN 38118             ← 2-space indent
 ..Generated Mar 7, 2026                             ← 2-space indent
                                                     ← blank line
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
